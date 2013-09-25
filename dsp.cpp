@@ -35,6 +35,8 @@ int main(int argc, wchar_t* argv[])
 
 	std::cout << s1[67];
 	std::cout << std::endl;
+	std::cout << ( 15 * 15 + 15 ) * 15 + 15 + ( 15 * 15 + 15 ) ;
+	std::cout << std::endl;
 
 	std::cout << (s0[67] - s0[66]).real();
 	std::cout << std::endl;
