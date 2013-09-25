@@ -13,16 +13,14 @@ namespace dsp
 		{
 
 		}
-		virtual const Signal operator()(Signal& s)
+		virtual void operator()(Signal& in, Signal& out)
 		{
-			if (s.get_size() != _mult.get_size())
+			if (in.get_size() != _mult.get_size())
 				throw("oups");
-			Signal ret = Signal(s);
-			for (int i = 0; i < s.get_size(); i++)
+			for (int i = 0; i < in.get_size(); i++)
 			{
-				(ret)[i] *= _mult[i];
+				out[i] = in[i] * _mult[i];
 			}
-			return ret;
 		}
 	};
 	class OpAdd
@@ -34,16 +32,14 @@ namespace dsp
 		{
 
 		}
-		virtual const Signal operator()(Signal& s)
+		virtual void operator()(Signal& in, Signal& out)
 		{
-			if (s.get_size() != _add.get_size())
+			if (in.get_size() != _add.get_size())
 				throw("oups");
-			Signal ret = Signal(s);
-			for (int i = 0; i < s.get_size(); i++)
+			for (int i = 0; i < in.get_size(); i++)
 			{
-				(ret)[i] += _add[i];
+				out[i] = in[i] + _add[i];
 			}
-			return ret;
 		}
 	};
 }

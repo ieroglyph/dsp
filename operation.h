@@ -7,6 +7,6 @@ namespace dsp
 	class Operation
 	{
 	public:
-		virtual const Signal operator()(Signal&) = 0;
+		virtual void operator()(Signal& in,Signal& out) = 0;
 	};
 }

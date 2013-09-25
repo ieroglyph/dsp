@@ -22,7 +22,7 @@ namespace dsp
 			Signal ret = Signal(sig);
 			for ( auto op = ops.begin(); op != ops.end(); op++ )
 			{
-				(ret) = (*(*op))(ret);
+				(*(*op))(ret,ret);
 			}
 			return ret;
 		};
