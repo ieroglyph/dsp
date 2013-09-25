@@ -4,7 +4,7 @@
 
 namespace dsp
 {
-	class OpMultiply
+	class OpMultiply: public Operation
 	{
 		Signal _mult;
 	public:
@@ -13,17 +13,17 @@ namespace dsp
 		{
 
 		}
-		virtual void operator()(Signal& in, Signal& out)
+		virtual void operator()(Signal& s)
 		{
-			if (in.get_size() != _mult.get_size())
+			if (s.get_size() != _mult.get_size())
 				throw("oups");
-			for (int i = 0; i < in.get_size(); i++)
+			for (int i = 0; i < s.get_size(); i++)
 			{
-				out[i] = in[i] * _mult[i];
+				s[i] *= _mult[i];
 			}
 		}
 	};
-	class OpAdd
+	class OpAdd: public Operation
 	{
 		Signal _add;
 	public:
@@ -32,14 +32,31 @@ namespace dsp
 		{
 
 		}
-		virtual void operator()(Signal& in, Signal& out)
+		virtual void operator()(Signal& s)
 		{
-			if (in.get_size() != _add.get_size())
+			if (s.get_size() != _add.get_size())
 				throw("oups");
-			for (int i = 0; i < in.get_size(); i++)
+			for (int i = 0; i < s.get_size(); i++)
 			{
-				out[i] = in[i] + _add[i];
+				s[i] += _add[i];
 			}
 		}
+	};
+	class OpExtend: public Operation
+	{
+		int N;
+	public:
+		OpExtend(int N)
+		{
+			this->N = N;
+		}
+		virtual void operator()(Signal& s)
+		{
+			s.set_size(this->N);
+		}
+	};
+	class OpFFT
+	{
+
 	};
 }
